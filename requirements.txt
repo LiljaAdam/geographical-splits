@@ -1,0 +1,17 @@
+pyrootutils     # standardizing the project root setup
+rich            # beautiful text formatting in terminal
+opencv-python
+pyquaternion
+h5py
+dataclass_wizard
+matplotlib
+seaborn
+scikit-learn
+nuscenes-devkit
+shapely==1.8.0
+nuscenes-devkit
+av2 # argoverse
+einops # for Geometry Kernel Transformer Encoder
+plotly
+kaleido
+PyYAML
