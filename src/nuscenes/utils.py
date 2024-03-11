@@ -43,6 +43,24 @@ def create_sample_positions(data_dir, data_splits, map_names):
 
     return scenes_positions
 
+def create_scene_to_location(data_dir):
+    nusc = NuScenes(
+                version="v1.0-trainval",
+                dataroot=data_dir,
+            )
+    nusc_test = NuScenes(
+                version="v1.0-test",
+                dataroot=data_dir,
+            )
+
+    scene_to_location = {}
+    for scene in nusc.scene:
+        scene_to_location[scene["name"]] = nusc.get("log", scene["log_token"])["location"]
+
+    for scene in nusc_test.scene:
+        scene_to_location[scene["name"]] = nusc_test.get("log", scene["log_token"])["location"]
+
+    return scene_to_location
 
 def get_samples_positions(data_dir=None, data_splits=None, map_names=None):
     if data_splits is None:
@@ -65,6 +83,22 @@ def get_samples_positions(data_dir=None, data_splits=None, map_names=None):
 
     return samples_positions
 
+def get_scene_name_to_location(data_dir):
+    if not os.path.exists(SCENE_TO_LOCATION_PICKLE):
+        print("Creating new scene to location pickle")
+
+        scene_to_location = create_scene_to_location(data_dir)
+        print(f"Saving scene to location to {SCENE_TO_LOCATION_PICKLE}")
+        os.makedirs(os.path.dirname(SCENE_TO_LOCATION_PICKLE), exist_ok=True)
+        with open(SCENE_TO_LOCATION_PICKLE, "wb") as f:
+            pickle.dump(scene_to_location, f)
+
+    else:
+        print("Loading scene to location from pickle")
+        with open(SCENE_TO_LOCATION_PICKLE, "rb") as f:
+            scene_to_location = pickle.load(f)
+
+    return scene_to_location
 
 def get_original_splits():
     from nuscenes.utils import splits

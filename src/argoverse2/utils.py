@@ -21,6 +21,15 @@ CAM_NAMES = ['ring_front_center',  'ring_front_left', 'ring_front_right',  'ring
 
 MAP_NAMES = ['PIT', 'PAO', 'ATX', 'WDC', 'MIA', 'DTW']
 
+CITYWISE_SPLITS = {
+    "PIT": ["PIT"],
+    "MIA": ["MIA"],
+    "PIT+MIA": ["PIT", "MIA"],
+    "REST": ["PAO", "ATX", "WDC", "DTW"],
+    "PIT+REST": ["PIT", "PAO", "ATX", "WDC", "DTW"],
+    "MIA+REST": ["MIA", "PAO", "ATX", "WDC", "DTW"],
+}
+
 DATASET_NAME = "argoverse2"
 DATASET_DIR = f"src/{DATASET_NAME}"
 ZONE_COORDINATES = f"{DATASET_DIR}/zone_coordinates/"

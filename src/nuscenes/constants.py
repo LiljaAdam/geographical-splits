@@ -22,6 +22,7 @@ SAMPLE_TOKEN_TO_SCENE_NAME_PICKLE = f"{HELPER_DIR}/sample_token_to_scene_name.pk
 SAMPLE_TOKEN_TO_LOCATION_PICKLE = f"{HELPER_DIR}/sample_token_to_location.pkl"
 NIGHT_RAIN_INFO_PICKLE = f"{HELPER_DIR}/scene_to_night_rain_info.pkl"
 SAMPLES_TO_NUM_OBJECTS_PICKLE = f"{HELPER_DIR}/sample_token_to_num_objects.pkl"
+SCENE_TO_LOCATION_PICKLE = f"{HELPER_DIR}/scene_to_location.pkl"
 
 CLOSE_MAPPINGS = f"{DATASET_DIR}/close_mappings/"
 CLOSEST_MAPPINGS = f"{DATASET_DIR}/closest_mappings/"
@@ -51,3 +52,18 @@ LOG_IDS_BLACKLIST = [
     "scene-0515",
     "scene-0517",
 ]
+
+CITYWISE_SPLITS = {
+                    "boston": ["boston-seaport"],
+                    "singapore": ["singapore-onenorth", 
+                                  "singapore-hollandvillage",
+                                  "singapore-queenstown"],
+                    "boston+onenorth": ["boston-seaport", 
+                                        "singapore-onenorth"],
+                    "hollandsvillage+queenstown": ["singapore-hollandvillage", 
+                                                   "singapore-queenstown"],
+                    "boston+hollandsvillage+queenstown": ["boston-seaport", 
+                                                          "singapore-hollandvillage", 
+                                                          "singapore-queenstown"],
+                    "onenorth": ["singapore-onenorth"],
+                }
