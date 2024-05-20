@@ -1,4 +1,8 @@
-<div align="center"><h2>Localization Is All You Evaluate: Data Leakage in Online Mapping Datasets and How to Fix It</h2></div>
+<div align="center">
+<h2>Localization Is All You Evaluate</h2> 
+<h4>Data Leakage in Online Mapping Datasets and How to Fix It</h4>
+<h6>CVPR 2024</h6>
+</div>
 <p align="center">
     <!-- doc badges -->
     <a href="https://arxiv.org/abs/2312.06420">
@@ -13,9 +17,11 @@ Specifically, over $80$\% of nuScenes and $40$\% of Argoverse 2 validation and t
   <img src="graphics/nuscenes_train_val_test.png" width="600" />
 </p>
 
-In our paper: Localization is All You Evaluate we propose to split the nuScenes and Arogverse 2 datasets by the samples' positions; Geographical splits. This repository contains the propsed geographical and citywise splits, and the code used to generate them. We also release some examples on how to convert the original pickle files to the geographical split pickle files for a set of online mapping methods.
+In our paper: Localization is All You Evaluate we propose to split the nuScenes and Arogverse 2 datasets by the samples' positions; Geographically Disjoint splits. This repository contains the propsed Near Extrapolation and Far Extrapolation splits, and the code used to generate them. 
 
-# nuScenes Geographical Splits
+We also release some examples on how to convert SOTA online mapping methods' Original split pickle files to Geographically Disjoint split pickle files.
+
+# nuScenes Near Extrapolation Splits
 <p align="center">
   <img src="graphics/nusc_geo/map_boston-seaport.png" width="300" />
   <img src="graphics/nusc_geo/map_singapore-hollandvillage.png" width="300" /> 
@@ -25,7 +31,7 @@ In our paper: Localization is All You Evaluate we propose to split the nuScenes 
   <img src="graphics/nusc_geo/map_singapore-queenstown.png" width="300" />
 </p>
 
-# Argoverse 2 Geographical Splits
+# Argoverse 2 Near Extrapolation Splits
 <p align="center">
   <img src="graphics/argo_geo/ATX.png" width="300" />
   <img src="graphics/argo_geo/DTW.png" width="300" /> 
@@ -42,19 +48,19 @@ In our paper: Localization is All You Evaluate we propose to split the nuScenes 
 # Usage
 You can use the proposed splits to train and evaluate the performance of online mapping methods directly. 
 
-The geographical and citywise splits are defined in txt files (also pkl-files exists for convinience) under `/citywise_splits` and `/geo_splits` respectively. 
+The Geographically disjoint splits are defined in txt files (pkl-files are also provided for convinience) under `/near_extrapolation_splits` and `/far_extrapolation_splits` respectively. 
 
-For Geographical nuScenes splits there are two versions: 
+For the nuScenes Near Extrapolation splits there are two versions: 
 
-1 - `geo_splits/nuscenes/samples`: where all samples are used and sequences that straddles a set boundary are split in two parts and assigned to the respective sets (see paper for details). The split-files consist of all indivudual samples' set assignment.
+1 - `near_extrapolation_splits/nuscenes/samples`: where all samples are used and sequences that straddles a set boundary are split in two parts and assigned to the respective sets (see paper for details). The split-files consist of all indivudual samples' set assignment.
 
-2 - `geo_splits/nuscenes/scenes`: sequences that straddles a set boundary are removed. The split-files contain the scene-name for each set assignment.
+2 - `near_extrapolation_splits/nuscenes/scenes`: sequences that straddles a set boundary are removed. The split-files contain the scene-name for each set assignment. 
 
-For Citywise splits the name of the file indicates the city and the set. E.g. `singapore.txt` contains the scenes from Singapore and `PIT+MIA.txt` contains the log ids for Pittsburgh and Miami.
+For Far Extrapolation splits the name of the file indicates the city and the set. E.g. `singapore.txt` contains the scenes from Singapore and `PIT+MIA.txt` contains the log ids for Pittsburgh and Miami.
 
 
 # Create/Verify Geographical Splits and results in paper
-If you want to verify the geographical splits, you can install the required packages and run the accompanying code as follows:
+If you want to verify the Geographically Disjoint splits, you can install the required packages and run the accompanying code as follows:
 
 ## Install
 
@@ -86,8 +92,8 @@ Generate the necessary dataset pkls following the instructions in the respective
 - VectorMapNet & HDMapNet: https://github.com/Tsinghua-MARS-Lab/Online_Map_Construction_Benchmark
 - More to be added...
 
-## Convert pickle files from a method to geographical split pkls
-Convert the dataset pkl files you generated in the previous step to geographical split pkls:
+## Convert pickle files from a method to geographically disjoint split pkls
+Convert the dataset pkl files you generated in the previous step to geographically disjoint split pkls:
 ```
 python src/nuscenes/convert_pkls.py --method my-selected-method --pkl_dir /path/to/pkls/folder/of/my/selected/method --output_dir /path/to/output 
 ```

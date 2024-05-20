@@ -54,6 +54,8 @@ LOG_IDS_BLACKLIST = [
 ]
 
 CITYWISE_SPLITS = {
+                    "hollandsvillage": ["singapore-hollandvillage"],
+                    "queenstown": ["singapore-queenstown"],
                     "boston": ["boston-seaport"],
                     "singapore": ["singapore-onenorth", 
                                   "singapore-hollandvillage",

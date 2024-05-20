@@ -1,4 +1,4 @@
-# Geographical Splits for nuScenes and Argoverse 2
+# Near Extrapolation splits for nuScenes and Argoverse 2
 
 ## Text files
 In the `*_txts`folders the set is indicated by the file name. E.g. `train.txt` contains the scenes/samples that are used for training. 
